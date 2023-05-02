@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, createRef } from "react";
 
 //video player
 import { DefaultPlayer as Video } from 'react-html5video';
@@ -41,14 +41,17 @@ const ReactVideoGallery = () => {
             <h1 style={{textAlign: 'center'}}>Video Gallery</h1>
             <div className="gallery">
                 {data.map((item, index)=>{
-                    let divRef = useRef(null);
+                    let divRef = createRef(null);
                     const openModel = () =>{
                         divRef.current.classList.remove('video');
                         divRef.current.classList.add('model');
                         setModel(true);
 
-                    }
+                    }  
                     const closeModel = () =>{
+                        divRef.current.add('video');
+                        divRef.current.classList.remove('model');
+                        setModel(false);
 
                     }
                     return(
@@ -62,7 +65,7 @@ const ReactVideoGallery = () => {
                                 >
                                
                         
-                                    <source scr={item.videoUri} type="video/webm" />
+                                    <source src={item.videoUri} type="video/webm" />
                                 </Video> 
                             </div>
                         </div>
