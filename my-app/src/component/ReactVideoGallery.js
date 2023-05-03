@@ -16,7 +16,7 @@ import img3 from '../videos/video3.jpg';
 import video3 from '../videos/video3.mp4';
 
 const ReactVideoGallery = () => {
-    const [model, setModel] = useState(false);
+    const [modal, setModal] = useState(false);
     let data = [
         {
             id: 1,
@@ -42,24 +42,24 @@ const ReactVideoGallery = () => {
             <div className="gallery">
                 {data.map((item, index)=>{
                     let divRef = createRef(null);
-                    const openModel = () =>{
+                    const openModal = () =>{
                         divRef.current.classList.remove('video');
-                        divRef.current.classList.add('model');
-                        setModel(true);
+                        divRef.current.classList.add('modal');
+                        setModal(true);
 
                     }  
-                    const closeModel = () =>{
+                    const closeModal = () =>{
                         divRef.current.add('video');
-                        divRef.current.classList.remove('model');
-                        setModel(false);
+                        divRef.current.classList.remove('modal');
+                        setModal(false);
 
                     }
                     return(
-                        <div ref={divRef} className="video" key={index}>
-                            <div className="video-container" onClick={()=>openModel()}>
+                        <div ref={divRef} className="video" key={index}> 
+                            <div className="video-container" onClick={()=>openModal()}>
                                 <Video
-                                 style={{width: '100'}}
-                                 autoPlay={model}
+                                 style={{width: '100'}} 
+                                 autoPlay={modal}
                                  controls={['PlayPause', 'Seek', 'Time', 'Volume','Fullscreen']}
                                  poster={item.poster}
                                 >
